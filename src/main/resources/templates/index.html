@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>お勧め書籍一覧</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="share::header"></div>
+<div class="container">
+	<form action="/bookList/*{id}/edit" method="get" th:object="${bookList}">
+	    <div class="row">
+		<h1>お勧め書籍一覧</h1>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>タイトル</th>
+						<th>著者</th>
+						<th>出版社</th>
+						<th>種類</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="bookList : ${bookLists}" th:object="${bookList}">
+						<td th:text="*{title}">タイトル</td>
+						<td th:text="*{author}">著者</td>
+						<td th:text="*{publisher}">出版社</td>
+						<td th:text="*{type}">種類</td>
+						<td><a th:href="@{|/bookList/*{id}|}"   class="btn btn-primary">詳細</a></td>
+						<td><a th:href="@{|/bookList/*{id}/edit|}"   class="btn btn-primary">編集</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+</div>
+</body>
+</html>

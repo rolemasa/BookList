@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>お勧め書籍一覧</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="share::header"></div>
+<div class="container">
+    <div class="row">
+    <h1>ユーザー一覧</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ユーザー名</th>
+				<th>種別</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="userList : ${userLists}" th:object="${userList}">
+				<td th:text="*{name}">ユーザー名</td>
+				<td th:text="*{authority}">種別</td>
+				<td><a th:href="@{|/account/*{id}/edit|}"  class="btn btn-primary">編集</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<p> </p>
+	<div class="offset-0 col-2">
+		<a href="/account/signup" class="btn btn-primary">ユーザー登録</a>
+	</div>
+
+</div>
+</div>
+
+</body>
+</html>

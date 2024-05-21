@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+body{
+    margin: 3em 3em;
+    background-color:#EEEEEE
+}
+
+h1 {
+    font-size: 30px;
+}
+
+table{
+	width: 600px;
+	background-color: #ffffff;
+}
+
+div{
+	width: 800px;
+	background-color: #ffffff;
+	text-decoration: underline;
+}
+
+p{
+	width: 800px;
+}

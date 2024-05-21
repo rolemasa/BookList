@@ -1,0 +1,8 @@
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(80),
+  password VARCHAR(80) NOT NULL,
+  authority VARCHAR(80) NOT NULL
+);
+
+

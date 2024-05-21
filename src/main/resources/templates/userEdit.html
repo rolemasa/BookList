@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー編集</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="share::header"></div>
+<div class="container">
+   	<div class="row">
+	<h1>ユーザー編集</h1>
+   		<div class="container mt-4">
+   		<form th:action="@{/account/update}" th:method="post" th:object="${userUpdateRequest}">
+	   		<input type="hidden" th:field="*{id}" />
+	   		
+	   		<div class="form-group row">
+				<label for="name" class="col-2 col-form-label">ユーザ名</label>
+				<div class="col-4">
+					<input type="text" th:field="*{name}" class="form-control">
+				</div>
+				<div class="col-6">
+					<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-muted"></span>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="password" class="col-2 col-form-label">パスワード</label>
+				<div class="col-4">
+					<input type="password" th:field="*{password}" class="form-control">
+				</div>
+				<div class="col-6">
+					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form-text text-muted"></span>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="authority" class="col-2 col-form-label">役割</label>
+				<div class="col-4">
+					<input type="radio" th:field="*{authority}" value="ADMIN">ADMIN
+					<input type="radio" th:field="*{authority}" value="USER">USER
+				</div>
+			</div> 		
+   		
+   					
+			<input type="submit" class="btn btn-primary">
+					
+   			<input type="button" value="戻る" onclick="history.back();" class="btn btn-primary"/>
+   		</form>
+   		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>お勧め書籍追加入力</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="share::header"></div>
+<div class="container">
+   	<div class="row">
+   	<h1>書籍登録</h1>
+   		<div class="container mt-4">
+		<form th:action="@{/create}" method="post" th:object="${bookListCreate}">
+		<div th:if="${createError}">
+   			<div th:text="${createError}"></div>
+   		</div>
+		<input
+	    type="hidden"
+	    th:name="${_csrf.parameterName}"
+	    th:value="${_csrf.token}"
+	    />
+	    
+			<div class="form-group row">
+				<label for="title" class="col-2 col-form-label">タイトル</label>
+				<div class="col-4">
+					<input type="text" th:field="*{title}" class="form-control">
+				</div>
+				<div class="col-6">
+					<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"  class="form-text text-muted"></span>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="author" class="col-2 col-form-label">著者</label>
+				<div class="col-4">
+					<input type="text" th:field="*{author}" class="form-control">
+				</div>
+				<div class="col-6">
+					<span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="form-text text-muted"></span>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="publisher" class="col-2 col-form-label">出版社</label>
+				<div class="col-4">
+					<input type="text" th:field="*{publisher}" class="form-control">
+				</div>
+				<div class="col-6">
+					<span th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}" class="form-text text-muted"></span>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="type" class="col-2 col-form-label">種類</label>
+				<div class="col-4">
+					<input type="radio" th:field="*{type}" value="書籍">書籍
+					<input type="radio" th:field="*{type}" value="マンガ">マンガ
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="contents" class="col-2 col-form-label">内容</label>
+				<textarea th:field="*{contents}" cols="60" rows="5"></textarea>
+				<br>
+				<div class="col-6">
+					<span th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}" class="form-text text-muted"></span>
+				</div>
+			</div>
+			
+			<input type="submit" class="btn btn-primary">
+					
+   			<input type="button" value="戻る" onclick="history.back();" class="btn btn-primary"/>
+		</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>
